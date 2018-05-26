@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Maze.Helper
+namespace Maze.Helpers
 {
     static class Validation
     {

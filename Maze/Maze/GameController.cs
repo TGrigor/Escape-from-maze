@@ -1,4 +1,4 @@
-﻿using Maze.Helper;
+﻿using Maze.Helpers;
 using Maze.Models;
 using System.Collections.Generic;
 

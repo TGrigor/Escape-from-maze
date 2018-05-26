@@ -1,4 +1,4 @@
-﻿namespace Maze.Helper
+﻿namespace Maze.Helpers
 {
     public struct Position
     {

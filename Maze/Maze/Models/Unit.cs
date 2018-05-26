@@ -1,4 +1,4 @@
-﻿using Maze.Helper;
+﻿using Maze.Helpers;
 
 namespace Maze.Models
 {
