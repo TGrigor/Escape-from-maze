@@ -52,7 +52,7 @@
     <Compile Include="Interfaces\IBoard.cs" />
     <Compile Include="Interfaces\IExitDoor.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
-    <Compile Include="Models\Unit.cs" />
+    <Compile Include="Abstracts\Unit.cs" />
     <Compile Include="TEMP\Board.cs" />
     <Compile Include="Models\Position.cs" />
     <Compile Include="Helpers\Validation.cs" />

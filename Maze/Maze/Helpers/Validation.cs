@@ -1,4 +1,5 @@
-﻿using Maze.Models;
+﻿using Maze.Abstracts;
+using Maze.Models;
 using System.Collections.Generic;
 using System.Linq;
 
