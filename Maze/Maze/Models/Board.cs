@@ -1,22 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Maze
 {
     class Board
     {
+        private List<Block> _blocks;
+
         public int Width { get; }
         public int Height { get; }
 
-        public List<Block> blocks;
+        public List<Block> Blocks { get => _blocks; }
 
         public Board(int width, int height)
         {
             this.Width = width;
-            this.Width = height;
+            this.Height = height;
         }
     }
 }

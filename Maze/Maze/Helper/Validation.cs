@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace Maze.Helper
 {
@@ -10,7 +6,13 @@ namespace Maze.Helper
     {
         public static bool ValidateBlockPosition(Board board, Block block)
         {
-            return true;
+            //Checking existing block in the same position
+            var isNotExist = !board.Blocks.Any(b => b.Position.Equals(block.Position));
+
+            //Check range of Board larger than block position
+            var isLarger = block.Position.CoordinateX < board.Width &&
+                           block.Position.CoordinateY < board.Height;
+            return isNotExist && isLarger;
         }
     }
 }
