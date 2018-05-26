@@ -7,36 +7,36 @@ namespace Maze.Helper
     static class Validation
     {
         /// <summary>
-        ///     Validate block object position before inserting to board
+        ///     Validate unit object position before inserting to board
         /// </summary>
         /// <param name="board">For getting board position</param>
-        /// <param name="block">For getting block position</param>
-        /// <returns> true/false depends board and block position </returns>
-        public static bool ValidateBlockPosition(Board board, Block block)
+        /// <param name="unit">For getting unit position</param>
+        /// <returns> true/false depends board and unit position </returns>
+        public static bool ValidateUnitPosition(Board board, Unit unit)
         {
-            //Checking existing block in the same position
-            var isNotExist = !board.Blocks.Any(b => b.Equals(block));
+            //Checking existing unit in the same position
+            var isNotExist = !board.Units.Any(b => b.Equals(unit));
 
-            //Check range of Board larger than block position
-            var isLarger = block.Position.CoordinateX < board.Width &&
-                           block.Position.CoordinateY < board.Height;
+            //Check range of Board larger than unit position
+            var isLarger = unit.Position.CoordinateX < board.Width &&
+                           unit.Position.CoordinateY < board.Height;
 
             return isNotExist && isLarger;
         }
 
         /// <summary>
-        ///     Validate and filter valid blocks
+        ///     Validate and filter valid units
         /// </summary>
         /// <param name="board">For getting board position</param>
-        /// <param name="blocks">For getting blocks positions</param>
-        /// <returns>List of valid blocks</returns>
-        public static List<Block> FilterValidBlocks(Board board, List<Block> blocks)
+        /// <param name="units">For getting units positions</param>
+        /// <returns>List of valid units</returns>
+        public static List<Unit> FilterValidUnits(Board board, List<Unit> units)
         {
-            //Filter invalit blocks
-            IEnumerable<Block> invalidBlocks = blocks.Where(b => board.Blocks.Contains(b));
-            
-            //Except and return valid blocks
-            return blocks.Except(invalidBlocks).ToList();
+            //Filter invalit units
+            IEnumerable<Unit> invalidUnits = units.Where(b => board.Units.Contains(b));
+
+            //Except and return valid units
+            return units.Except(invalidUnits).ToList();
         }
     }
 }

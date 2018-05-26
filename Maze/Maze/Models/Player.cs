@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Maze.Models
 {
-    internal class Player : Block
+    class Player : Unit
     {
-        public Player(Position position) : base(position) { }
+        protected Player(Position position) : base(position) { }
 
         /// <summary>
         ///     Change position do step

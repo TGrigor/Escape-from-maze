@@ -10,57 +10,58 @@ namespace Maze.Models
         public int Height { get; }
 
         public Player Player { get; private set; }
-        public List<Block> Blocks { get; }
+        public ExitDoor ExitDoor { get; private set; }
+        public List<Unit> Units { get; }
 
-        public Board(int width, int height)
+        protected Board(int width, int height)
         {
             this.Width = width;
             this.Height = height;
 
-            Blocks = new List<Block>();
+            Units = new List<Unit>();
         }
 
         /// <summary>
-        ///     Insert new block to board
+        ///     Insert new unit to board
         /// </summary>
-        /// <param name="newBlock">New block object</param>
-        /// <returns>true/false depends block was inserted</returns>
-        public bool Insert(Block newBlock)
+        /// <param name="newUnit">New unit object</param>
+        /// <returns>true/false depends unit was inserted</returns>
+        public bool Insert(Unit newUnit)
         {
-            //Validate block
-            bool isValidBlock = Validation.ValidateBlockPosition(this, newBlock);
+            //Validate unit
+            bool isValidUnit = Validation.ValidateUnitPosition(this, newUnit);
 
-            if (isValidBlock)
+            if (isValidUnit)
             {
-                Blocks.Add(newBlock);
+                Units.Add(newUnit);
             }
 
-            return isValidBlock;
+            return isValidUnit;
         }
 
         /// <summary>
-        ///     Bulk insert blocks to board
+        ///     Bulk insert units to board
         /// </summary>
-        /// <param name="newBlocks">Block list</param>
-        /// <returns>true/false depends blocks was inserted</returns>
-        public bool Insert(List<Block> newBlocks)
+        /// <param name="newUnits">Unit list</param>
+        /// <returns>true/false depends units was inserted</returns>
+        public bool Insert(List<Unit> newUnits)
         {
-            if (newBlocks.Any())
+            if (newUnits.Any())
             {
-                //Get valid blocks
-                List<Block> newValidBlocks = Validation.FilterValidBlocks(this, newBlocks);
-                bool validBlocksExist = newValidBlocks.Any();
+                //Get valid units
+                List<Unit> newValidUnits = Validation.FilterValidUnits(this, newUnits);
+                bool validUnitsExist = newValidUnits.Any();
 
-                if (validBlocksExist)
+                if (validUnitsExist)
                 {
-                    Blocks.AddRange(newValidBlocks);
-                    return validBlocksExist;
+                    Units.AddRange(newValidUnits);
+                    return validUnitsExist;
                 }
 
-                return validBlocksExist;
+                return validUnitsExist;
             }
 
-            //New blocks doesn't exist
+            //New units doesn't exist
             return false;
         }
 
@@ -72,7 +73,7 @@ namespace Maze.Models
         public bool Insert(Player newPlayer)
         {
             //Validate player
-            bool isValidPlayer = Validation.ValidateBlockPosition(this, newPlayer);
+            bool isValidPlayer = Validation.ValidateUnitPosition(this, newPlayer);
 
             if (isValidPlayer)
             {
