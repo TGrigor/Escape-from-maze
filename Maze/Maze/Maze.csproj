@@ -43,10 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameController.cs" />
+    <Compile Include="Helper\StepState.cs" />
     <Compile Include="Models\Block.cs" />
     <Compile Include="Models\Board.cs" />
     <Compile Include="Helper\Position.cs" />
     <Compile Include="Helper\Validation.cs" />
+    <Compile Include="Models\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

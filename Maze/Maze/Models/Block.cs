@@ -1,14 +1,16 @@
 ﻿using Maze.Helper;
 
-namespace Maze
+namespace Maze.Models
 {
-    class Block
+    internal class Block
     {
-        public Position Position { get; }
+        internal Position _position;
+
+        public Position Position { get => _position; }
 
         public Block(Position blockPosition)
         {
-            this.Position = blockPosition;
+            this._position = blockPosition;
         }
 
         public override bool Equals(object obj)
@@ -16,6 +18,13 @@ namespace Maze
             Block blockObj = (Block)obj;
 
             return blockObj.Position.Equals(this.Position);
+        }
+
+        public override int GetHashCode()
+        {
+            int hash = 13;
+            hash = (hash * 7) + _position.GetHashCode();
+            return hash;
         }
     }
 }

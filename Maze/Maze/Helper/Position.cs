@@ -15,5 +15,13 @@
             return _coordinateX.Equals(PositionObj.CoordinateX) && 
                    _coordinateY.Equals(PositionObj._coordinateY);
         }
+
+        public override int GetHashCode()
+        {
+            int hash = 13;
+            hash = (hash * 7) + _coordinateX.GetHashCode();
+            hash = (hash * 7) + _coordinateY.GetHashCode();
+            return hash;
+        }
     }
 }

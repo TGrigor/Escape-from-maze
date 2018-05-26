@@ -1,4 +1,5 @@
 ﻿using Maze.Helper;
+using Maze.Models;
 using System.Collections.Generic;
 
 namespace Maze

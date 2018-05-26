@@ -2,28 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Maze
+namespace Maze.Models
 {
     class Board
     {
-        private List<Block> _blocks;
-
         public int Width { get; }
         public int Height { get; }
 
-        public List<Block> Blocks { get => _blocks; }
+        public Player Player { get; private set; }
+        public List<Block> Blocks { get; }
 
         public Board(int width, int height)
         {
             this.Width = width;
             this.Height = height;
+
+            Blocks = new List<Block>();
         }
 
         /// <summary>
         ///     Insert new block to board
         /// </summary>
         /// <param name="newBlock">New block object</param>
-        /// <returns>true/false depends inserted block or not</returns>
+        /// <returns>true/false depends block was inserted</returns>
         public bool Insert(Block newBlock)
         {
             //Validate block
@@ -31,7 +32,7 @@ namespace Maze
 
             if (isValidBlock)
             {
-                _blocks.Add(newBlock);
+                Blocks.Add(newBlock);
             }
 
             return isValidBlock;
@@ -41,7 +42,7 @@ namespace Maze
         ///     Bulk insert blocks to board
         /// </summary>
         /// <param name="newBlocks">Block list</param>
-        /// <returns>true/false depends  inserted blocks or not</returns>
+        /// <returns>true/false depends blocks was inserted</returns>
         public bool Insert(List<Block> newBlocks)
         {
             if (newBlocks.Any())
@@ -52,7 +53,7 @@ namespace Maze
 
                 if (validBlocksExist)
                 {
-                    _blocks.AddRange(newValidBlocks);
+                    Blocks.AddRange(newValidBlocks);
                     return validBlocksExist;
                 }
 
@@ -61,6 +62,24 @@ namespace Maze
 
             //New blocks doesn't exist
             return false;
+        }
+
+        /// <summary>
+        ///     Insert Player to board
+        /// </summary>
+        /// <param name="newPlayer">New player object</param>
+        /// <returns>true/false depends player was inserted</returns>
+        public bool Insert(Player newPlayer)
+        {
+            //Validate player
+            bool isValidPlayer = Validation.ValidateBlockPosition(this, newPlayer);
+
+            if (isValidPlayer)
+            {
+                Player = newPlayer;
+            }
+
+            return isValidPlayer;
         }
     }
 }
