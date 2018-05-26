@@ -10,5 +10,12 @@ namespace Maze
         {
             this.Position = blockPosition;
         }
+
+        public override bool Equals(object obj)
+        {
+            Block blockObj = (Block)obj;
+
+            return blockObj.Position.Equals(this.Position);
+        }
     }
 }
