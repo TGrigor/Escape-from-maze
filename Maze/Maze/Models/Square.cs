@@ -1,6 +1,6 @@
-﻿namespace Maze.Helpers
+﻿namespace Maze.Models
 {
-    class Square
+    struct Square
     {
         private int _width;
         private int _height;

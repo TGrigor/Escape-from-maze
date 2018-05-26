@@ -1,4 +1,4 @@
-﻿using Maze.Helpers;
+﻿using Maze.Enums;
 using Maze.Interfaces;
 using Maze.Models;
 

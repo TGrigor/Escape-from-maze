@@ -1,6 +1,4 @@
-﻿using Maze.Helpers;
-
-namespace Maze.Models
+﻿namespace Maze.Models
 {
     class Unit
     {

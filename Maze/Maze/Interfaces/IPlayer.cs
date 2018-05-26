@@ -1,4 +1,5 @@
-﻿using Maze.Helpers;
+﻿using Maze.Enums;
+using Maze.Helpers;
 
 namespace Maze.Interfaces
 {

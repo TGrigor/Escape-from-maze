@@ -1,5 +1,4 @@
-﻿using Maze.Helpers;
-using Maze.Models;
+﻿using Maze.Models;
 using System.Collections.Generic;
 
 namespace Maze.Interfaces
