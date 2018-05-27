@@ -53,11 +53,8 @@
     <Compile Include="Interfaces\IExitDoor.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Abstracts\Unit.cs" />
-    <Compile Include="TEMP\Board.cs" />
     <Compile Include="Models\Position.cs" />
     <Compile Include="Helpers\Validation.cs" />
-    <Compile Include="TEMP\ExitDoor.cs" />
-    <Compile Include="TEMP\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

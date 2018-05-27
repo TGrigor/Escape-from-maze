@@ -17,29 +17,59 @@ namespace Maze.ConsoleModels
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        ///     Change position do step
+        /// </summary>
+        /// <param name="state">Change step using state</param>
         public void Step(StepState state)
         {
-            throw new System.NotImplementedException();
+            switch (state)
+            {
+                case StepState.Top:
+                    StepTop();
+                    break;
+                case StepState.Bottom:
+                    StepBottom();
+                    break;
+                case StepState.Right:
+                    StepRight();
+                    break;
+                case StepState.Left:
+                    StepLeft();
+                    break;
+            }
         }
 
-        public void StepBottom()
+        /// <summary>
+        ///     Change player position to right +1
+        /// </summary>
+        private void StepRight()
         {
-            throw new System.NotImplementedException();
+            this._position.CoordinateX++;
         }
 
-        public void StepLeft()
+        /// <summary>
+        ///     Change player position to left +1
+        /// </summary>
+        private void StepLeft()
         {
-            throw new System.NotImplementedException();
+            this._position.CoordinateX--;
         }
 
-        public void StepRight()
+        /// <summary>
+        ///     Change player position to top +1
+        /// </summary>
+        private void StepTop()
         {
-            throw new System.NotImplementedException();
+            this._position.CoordinateY++;
         }
 
-        public void StepTop()
+        /// <summary>
+        ///     Change player position to bottom +1
+        /// </summary>
+        private void StepBottom()
         {
-            throw new System.NotImplementedException();
+            this._position.CoordinateY--;
         }
     }
 }

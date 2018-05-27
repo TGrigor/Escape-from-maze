@@ -8,13 +8,13 @@ namespace Maze.Interfaces
                                                where TExitDoor: Unit, IExitDoor 
                                                where TBlock: Unit
     {
-        Square Square { get; set; }
+        Square Square { get; }
         TPlayer Player { get; }
         TExitDoor ExitDoor { get; }
-        IEnumerable<TBlock> Blocks { get; }
+        List<TBlock> Blocks { get; }
 
         bool Insert(TBlock block);
-        bool Insert(IEnumerable<TBlock> blocks);
+        bool Insert(List<TBlock> blocks);
         bool Insert(TPlayer player);
         bool Insert(TExitDoor exitDoor);
     }
