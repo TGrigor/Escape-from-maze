@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Maze.Interfaces
 {
-    interface IBoard<TPlayer,TExitDoor,TBlock> where TPlayer : Unit, IPlayer 
-                                               where TExitDoor: Unit, IExitDoor 
-                                               where TBlock: Unit
+    interface IBoard<TPlayer, TExitDoor, TBlock> where TPlayer : Unit, IPlayer 
+                                                 where TExitDoor: Unit, IExitDoor 
+                                                 where TBlock: Unit
     {
         Square Square { get; }
         TPlayer Player { get; }

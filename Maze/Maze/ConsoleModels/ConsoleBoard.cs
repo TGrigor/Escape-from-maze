@@ -19,9 +19,10 @@ namespace Maze.ConsoleModels
         ///     Constructor use square for create empty board.
         /// </summary>
         /// <param name="square">Square of board</param>
-        protected ConsoleBoard(Square square)
+        public ConsoleBoard(Square square)
         {
             this.Square = square;
+            Blocks = new List<ConsoleBlock>();
         }
 
         /// <summary>

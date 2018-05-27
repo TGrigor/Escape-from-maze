@@ -8,6 +8,13 @@
         public int CoordinateX { get => _coordinateX; set => _coordinateX = value; }
         public int CoordinateY { get => _coordinateY; set => _coordinateY = value; }
 
+
+        public Position(int cordX, int cordY)
+        {
+            this._coordinateX = cordX;
+            this._coordinateY = cordY;
+        }
+
         public override bool Equals(object obj)
         {
             Position PositionObj = (Position)obj;

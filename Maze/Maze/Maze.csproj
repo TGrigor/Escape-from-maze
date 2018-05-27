@@ -46,7 +46,10 @@
     <Compile Include="ConsoleModels\ConsoleBoard.cs" />
     <Compile Include="ConsoleModels\ConsoleExitDoor.cs" />
     <Compile Include="ConsoleModels\ConsolePlayer.cs" />
-    <Compile Include="GameController.cs" />
+    <Compile Include="Controllers\ConsoleController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
+    <Compile Include="Controllers\MazeController.cs" />
+    <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Models\Square.cs" />
     <Compile Include="Enums\StepState.cs" />
     <Compile Include="Interfaces\IBoard.cs" />
