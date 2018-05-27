@@ -32,7 +32,7 @@ namespace Maze.ConsoleModels
         public bool Insert(ConsoleBlock newBlock)
         {
             //Validate unit
-            bool isValidUnit = true; //Validation.ValidateUnitPosition(this, newBlock);
+            bool isValidUnit = Validation.ValidatePosition(this, newBlock);
 
             if (isValidUnit)
             {
@@ -45,14 +45,14 @@ namespace Maze.ConsoleModels
         /// <summary>
         ///     Bulk insert blocks to board
         /// </summary>
-        /// <param name="newUnits">Block list</param>
+        /// <param name="newBlocks">Block list</param>
         /// <returns>true/false depends blocks was inserted</returns>
-        public bool Insert(List<ConsoleBlock> newUnits)
+        public bool Insert(List<ConsoleBlock> newBlocks)
         {
-            if (newUnits.Any())
+            if (newBlocks.Any())
             {
                 //Get valid units
-                List<ConsoleBlock> newValidUnits = Validation.FilterValidUnits(this, newUnits);
+                List<ConsoleBlock> newValidUnits = Validation.FilterInvalids(this, newBlocks);
                 bool validUnitsExist = newValidUnits.Any();
 
                 if (validUnitsExist)
@@ -94,7 +94,7 @@ namespace Maze.ConsoleModels
         public bool Insert(ConsoleExitDoor exitDoor)
         {
             //Validate player
-            bool isValidDoor = true;//Validation.ValidateUnitPosition(this, newPlayer);
+            bool isValidDoor = Validation.ValidatePosition(this, exitDoor);
 
             if (isValidDoor)
             {

@@ -27,19 +27,19 @@ namespace Maze.Helpers
             return isNotExist && isLarger;
         }
 
-        /// <summary>
-        ///     Validate and filter valid units
+        //// <summary>
+        ///     Validate and filter valid blocks
         /// </summary>
         /// <param name="board">For getting board position</param>
-        /// <param name="units">For getting units positions</param>
-        /// <returns>List of valid units</returns>
-        public static List<Unit> FilterValidUnits(IBoard<ConsolePlayer, ConsoleExitDoor, ConsoleBlock> board, List<Unit> units)
+        /// <param name="blocks">For getting blocks positions</param>
+        /// <returns>List of valid blocks</returns>
+        public static List<ConsoleBlock> FilterInvalids(IBoard<ConsolePlayer, ConsoleExitDoor, ConsoleBlock> board, List<ConsoleBlock> blocks)
         {
-            //Filter invalit units
-            IEnumerable<Unit> invalidUnits = units.Where(b => board.Blocks.Contains(b));
+            //Filter invalit blocks
+            IEnumerable<ConsoleBlock> invalidBlocks = blocks.Where(b => board.Blocks.Contains(b));
 
-            //Except and return valid units
-            return units.Except(invalidUnits).ToList();
+            //Except and return valid blocks
+            return blocks.Except(invalidBlocks).ToList();
         }
     }
 }
