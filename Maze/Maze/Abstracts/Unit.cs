@@ -1,8 +1,8 @@
-﻿using Maze.Helper;
+﻿using Maze.Models;
 
-namespace Maze.Models
+namespace Maze.Abstracts
 {
-    class Unit
+    abstract class Unit
     {
         protected Position _position;
 

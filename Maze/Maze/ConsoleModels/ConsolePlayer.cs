@@ -1,15 +1,21 @@
-﻿using Maze.Helper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Maze.Abstracts;
+using Maze.Enums;
+using Maze.Interfaces;
+using Maze.Models;
 
-namespace Maze.Models
+namespace Maze.ConsoleModels
 {
-    class Player : Unit
+    class ConsolePlayer :Unit, IPlayer
     {
-        protected Player(Position position) : base(position) { }
+        public ConsolePlayer(Position position): base(position)
+        {
+                
+        }
+
+        public void Move()
+        {
+            throw new System.NotImplementedException();
+        }
 
         /// <summary>
         ///     Change position do step

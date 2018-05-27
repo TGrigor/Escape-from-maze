@@ -42,19 +42,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleModels\ConsoleBlock.cs" />
+    <Compile Include="ConsoleModels\ConsoleBoard.cs" />
+    <Compile Include="ConsoleModels\ConsoleExitDoor.cs" />
+    <Compile Include="ConsoleModels\ConsolePlayer.cs" />
     <Compile Include="GameController.cs" />
-    <Compile Include="Helper\StepState.cs" />
-    <Compile Include="Models\Unit.cs" />
-    <Compile Include="Models\Board.cs" />
-    <Compile Include="Helper\Position.cs" />
-    <Compile Include="Helper\Validation.cs" />
-    <Compile Include="Models\ExitDoor.cs" />
-    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Square.cs" />
+    <Compile Include="Enums\StepState.cs" />
+    <Compile Include="Interfaces\IBoard.cs" />
+    <Compile Include="Interfaces\IExitDoor.cs" />
+    <Compile Include="Interfaces\IPlayer.cs" />
+    <Compile Include="Abstracts\Unit.cs" />
+    <Compile Include="Models\Position.cs" />
+    <Compile Include="Helpers\Validation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
