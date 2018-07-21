@@ -15,7 +15,7 @@ namespace Maze.Helpers
         /// <param name="board">For getting board position</param>
         /// <param name="unit">For getting unit position</param>
         /// <returns> true/false depends board and unit position </returns>
-        public static bool ValidatePosition(IBoard<ConsolePlayer, ConsoleExitDoor, ConsoleBlock> board, Unit unit)
+        public static bool ValidatePosition(IBoard<Player, ExitDoor, Block> board, Unit unit)
         {
             //Checking existing unit in the same position
             var isNotExist = !board.Blocks.Any(b => b.Equals(unit));
@@ -33,13 +33,26 @@ namespace Maze.Helpers
         /// <param name="board">For getting board position</param>
         /// <param name="blocks">For getting blocks positions</param>
         /// <returns>List of valid blocks</returns>
-        public static List<ConsoleBlock> FilterInvalids(IBoard<ConsolePlayer, ConsoleExitDoor, ConsoleBlock> board, List<ConsoleBlock> blocks)
+        public static List<Block> FilterInvalids(IBoard<Player, ExitDoor, Block> board, List<Block> blocks)
         {
             //Filter invalit blocks
-            IEnumerable<ConsoleBlock> invalidBlocks = blocks.Where(b => board.Blocks.Contains(b));
+            IEnumerable<Block> invalidBlocks = blocks.Where(b => board.Blocks.Contains(b));
 
             //Except and return valid blocks
             return blocks.Except(invalidBlocks).ToList();
+        }
+
+      
+        public static bool ValidatePosition(IBoard<ConsolePlayer, ConsoleExitDoor, ConsoleBlock> board, Position position)
+        {
+            //Checking existing unit in the same position
+            var isNotExist = !board.Blocks.Any(b => b.Position.Equals(position));
+
+            //Check range of Board larger than unit position
+            var isLarger = position.CoordinateX < board.Square.Width &&
+                           position.CoordinateY < board.Square.Height;
+
+            return isNotExist && isLarger;
         }
     }
 }

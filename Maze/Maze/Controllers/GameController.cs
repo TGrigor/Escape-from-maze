@@ -14,12 +14,14 @@ namespace Maze
     {
         MazeController _mazeController;
         ConsoleController _consoleController;
-        IBoard<ConsolePlayer, ConsoleExitDoor, ConsoleBlock> _consoleBoard;
+        ComputerController _computerController;
+        ConsoleBoard _consoleBoard;
 
         public GameController()
         {
             _mazeController = new MazeController();
             _consoleController = new ConsoleController();
+            _computerController = new ComputerController();
             _consoleBoard = new ConsoleBoard(new Square()
                                              {
                                                  Width = 20,
@@ -46,6 +48,8 @@ namespace Maze
             _consoleBoard.Insert(exitDoor);
 
             _consoleController.DrowBoard(_consoleBoard);
+
+            var  a = _computerController.PlayMazeLogic(_consoleBoard);
         }
     }
 }

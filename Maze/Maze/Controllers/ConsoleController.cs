@@ -1,5 +1,6 @@
 ﻿using Maze.ConsoleModels;
 using Maze.Interfaces;
+using Maze.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Maze.Controllers
     {
         private ConsoleColor defaultColor = ConsoleColor.White;
 
-        public void DrowBoard(IBoard<ConsolePlayer,ConsoleExitDoor,ConsoleBlock> board)
+        public void DrowBoard(ConsoleBoard board)
         {
             Drow(board.Blocks);
             Drow(board.Player);
@@ -27,6 +28,15 @@ namespace Maze.Controllers
                 Drow(block);
             }
         }
+        //TODO: Remove duplicate code
+        public void Drow(ConsoleBlock block,int i)
+        {
+            Console.ForegroundColor = block.Color;
+            Console.SetCursorPosition(block.Position.CoordinateX, block.Position.CoordinateY);
+            Console.WriteLine(i);
+            Console.ForegroundColor = defaultColor;
+        }
+
         //TODO: Remove duplicate code
         private void Drow(ConsoleBlock block)
         {

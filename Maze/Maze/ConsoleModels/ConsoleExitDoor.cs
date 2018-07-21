@@ -5,7 +5,7 @@ using System;
 
 namespace Maze.ConsoleModels
 {
-    class ConsoleExitDoor: Unit, IExitDoor
+    class ConsoleExitDoor: ExitDoor, IExitDoor
     {
         public ConsoleColor Color { get; }
 

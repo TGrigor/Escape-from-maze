@@ -6,7 +6,7 @@ using System;
 
 namespace Maze.ConsoleModels
 {
-    class ConsoleBlock : Unit
+    class ConsoleBlock : Block
     {
         public ConsoleColor Color { get; }
 
