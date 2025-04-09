@@ -7,7 +7,7 @@ A simple console-based maze-solving game written in C#. The program generates a 
 ---
 
 ## 📸 Preview
-![Maze Interface](/Files/view.jpg)
+![Maze Interface](/Maze/Files/view.jpg)
 
 - 🟥 Red numbers show explored tiles.
 - 🟩 Green numbers highlight the correct path from start to exit.
