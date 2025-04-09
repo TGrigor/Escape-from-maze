@@ -1,7 +1,5 @@
 ﻿using Maze.Abstracts;
 using Maze.Interfaces;
-using Maze.Models;
-using System;
 
 namespace Maze.Models
 {

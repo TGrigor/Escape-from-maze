@@ -28,12 +28,17 @@ namespace Maze.Controllers
                 Drow(block);
             }
         }
+
         //TODO: Remove duplicate code
-        public void Drow(ConsoleBlock block,int i)
+        public void Drow(ConsoleBlock block, int i, char? ch = null)
         {
             Console.ForegroundColor = block.Color;
             Console.SetCursorPosition(block.Position.CoordinateX, block.Position.CoordinateY);
-            Console.WriteLine(i);
+            if (ch != null)
+            {
+                Console.WriteLine(ch);
+            }
+
             Console.ForegroundColor = defaultColor;
         }
 
@@ -60,7 +65,7 @@ namespace Maze.Controllers
         {
             Console.ForegroundColor = exitDoor.Color;
             Console.SetCursorPosition(exitDoor.Position.CoordinateX, exitDoor.Position.CoordinateY);
-            Console.WriteLine("X");
+            Console.WriteLine("D");
             Console.ForegroundColor = defaultColor;
         }
     }

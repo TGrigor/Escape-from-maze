@@ -1,7 +1,4 @@
-﻿using Maze.Abstracts;
-using Maze.Helpers;
-using Maze.Interfaces;
-using Maze.Models;
+﻿using Maze.Models;
 using System;
 
 namespace Maze.ConsoleModels
@@ -10,9 +7,9 @@ namespace Maze.ConsoleModels
     {
         public ConsoleColor Color { get; }
 
-        public ConsoleBlock(Position position): base(position)
+        public ConsoleBlock(Position position, ConsoleColor color = ConsoleColor.Red): base(position)
         {
-            Color = ConsoleColor.Red;
+            Color = color;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Maze.Abstracts;
-using Maze.Interfaces;
+﻿using Maze.Interfaces;
 using Maze.Models;
 using System;
 

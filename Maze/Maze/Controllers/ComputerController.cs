@@ -1,68 +1,91 @@
-﻿using Maze.Abstracts;
-using Maze.ConsoleModels;
+﻿using Maze.ConsoleModels;
 using Maze.Helpers;
 using Maze.Interfaces;
 using Maze.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Maze.Controllers
 {
     class ComputerController
     {
         List<KeyValuePair<int, Position>> whiteSpacePositions = new List<KeyValuePair<int, Position>>();
+        Dictionary<Position, Position?> cameFrom = new Dictionary<Position, Position?>();
 
-        public List<KeyValuePair<int, Position>> PlayMazeLogic(IBoard<ConsolePlayer, ConsoleExitDoor, ConsoleBlock> board)
+        public List<Position> PlayMazeLogic(IBoard<ConsolePlayer, ConsoleExitDoor, ConsoleBlock> board)
         {
             ConsoleController cons = new ConsoleController();
-            int n = 1;
-            bool findExitDoor = false;
+            Queue<Position> frontier = new Queue<Position>();
+            cameFrom.Clear();
+            whiteSpacePositions.Clear();
 
-            whiteSpacePositions.Add(new KeyValuePair<int, Position>(n, board.Player.Position));
-            while (!findExitDoor)
+            Position start = board.Player.Position;
+            Position exit = board.ExitDoor.Position;
+
+            frontier.Enqueue(start);
+            cameFrom[start] = null;
+
+            bool found = false;
+
+            while (frontier.Count > 0)
             {
-                var listOfPositions = whiteSpacePositions.Where(k => k.Key == n).ToList();
-                for (int j = 0; j < listOfPositions.Count; j++)
+                Position current = frontier.Dequeue();
+                board.Player.Move(current);
+
+                List<Position> neighbors = new List<Position>
                 {
-                    board.Player.Move(listOfPositions[j].Value);
+                    board.Player.StepTop(),
+                    board.Player.StepBottom(),
+                    board.Player.StepLeft(),
+                    board.Player.StepRight()
+                };
 
-                    if (Validation.ValidatePosition(board, board.Player.StepTop()) && !whiteSpacePositions.Any(w => w.Value.Equals(board.Player.StepTop())) && !board.ExitDoor.Position.Equals(board.Player.StepTop()))
+                foreach (var next in neighbors)
+                {
+                    if (!Validation.ValidatePosition(board, next)) continue;
+                    if (cameFrom.ContainsKey(next)) continue;
+
+                    frontier.Enqueue(next);
+                    cameFrom[next] = current;
+
+                    // Optional: Show exploration steps
+                    cons.Drow(new ConsoleBlock(next), 1);
+                    System.Threading.Thread.Sleep(50);
+
+                    if (next.Equals(exit))
                     {
-                        whiteSpacePositions.Add(new KeyValuePair<int, Position>(n + 1, board.Player.StepTop()));
-                        cons.Drow(new ConsoleBlock(board.Player.StepTop()), n + 1);
-                    }
-
-                    if (Validation.ValidatePosition(board, board.Player.StepBottom()) && !whiteSpacePositions.Any(w => w.Value.Equals(board.Player.StepBottom())) && !board.ExitDoor.Position.Equals(board.Player.StepBottom()))
-                    {
-                        whiteSpacePositions.Add(new KeyValuePair<int, Position>(n + 1, board.Player.StepBottom()));
-                        cons.Drow(new ConsoleBlock(board.Player.StepBottom()), n + 1);
-
-                    }
-
-                    if (Validation.ValidatePosition(board, board.Player.StepRight()) && !whiteSpacePositions.Any(w => w.Value.Equals(board.Player.StepRight())) && !board.ExitDoor.Position.Equals(board.Player.StepRight()))
-                    {
-                        whiteSpacePositions.Add(new KeyValuePair<int, Position>(n + 1, board.Player.StepRight()));
-                        cons.Drow(new ConsoleBlock(board.Player.StepRight()), n + 1);
-                    }
-
-                    if (Validation.ValidatePosition(board, board.Player.StepLeft()) && !whiteSpacePositions.Any(w => w.Value.Equals(board.Player.StepLeft())) && !board.ExitDoor.Position.Equals(board.Player.StepLeft()))
-                    {
-                        whiteSpacePositions.Add(new KeyValuePair<int, Position>(n + 1, board.Player.StepLeft()));
-                        cons.Drow(new ConsoleBlock(board.Player.StepLeft()), n + 1);
-                    }
-
-                    if (board.ExitDoor.Position.Equals(board.Player.StepTop()) || board.ExitDoor.Position.Equals(board.Player.StepBottom()) || board.ExitDoor.Position.Equals(board.Player.StepRight()) || board.ExitDoor.Position.Equals(board.Player.StepLeft()))
-                    {
-                        findExitDoor = true;
-                        whiteSpacePositions.Add(new KeyValuePair<int, Position>(n + 1, board.ExitDoor.Position));
+                        found = true;
+                        break;
                     }
                 }
-                n++;
+
+                if (found)
+                    break;
             }
-            return whiteSpacePositions;
+
+            // Now reconstruct the path
+            List<Position> path = new List<Position>();
+            if (!cameFrom.ContainsKey(exit)) return path; // no path found
+
+            Position? p = exit;
+            while (p != null)
+            {
+                path.Add(p.Value);
+                p = cameFrom[p.Value];
+            }
+            path.Reverse();
+
+            // Draw only the correct path clearly
+            int step = 1;
+            foreach (var pos in path)
+            {
+                cons.Drow(new ConsoleBlock(pos, ConsoleColor.Green), step++, 'o');
+                System.Threading.Thread.Sleep(100);
+            }
+
+            return path;
         }
+
+
     }
 }
